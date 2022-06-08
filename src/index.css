@@ -28,6 +28,11 @@ font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   height: 100px;
 }
 
+.square:focus {
+  outline: none;
+  background-color: #222;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

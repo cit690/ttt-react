@@ -1,15 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './App';
 // import reportWebVitals from './reportWebVitals';
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
+
 
 // // If you want to start measuring performance in your app, pass a function
 // // to log results (for example: reportWebVitals(console.log))
@@ -17,15 +12,37 @@ import './index.css';
 // reportWebVitals();
 
 const Square = (props) => {
-  return ( <div className='square'>
-    {props.value}
-  </div> );
+
+  return ( 
+  <button 
+    className='square'
+    onClick={props.onClickEvent}
+    >
+      {props.value}
+  </button> );
 }
  
 
 const Board = () => {
+  const initialSquares = [
+    null, null, null,
+    null, null, null,
+    null, null, null,
+  ]
+
+  const [squares, setSquares] = useState(initialSquares)
+
+  const handleClickEvent = (i) => {
+    alert(`square ${i} clicked`)
+  }
+
   const renderSquare = (i) => {
-    return ( <Square value={i} /> );
+    return ( 
+    <Square
+    value={squares[i]}
+    onClickEvent={() => handleClickEvent(i)}
+    /> 
+    );
   }
   
   return ( <div style={{
@@ -65,7 +82,14 @@ const Game = () => {
  
 export default Game;
 
-ReactDOM.render(
-  <Game />,
-  document.getElementById('root')
-)
+// ReactDOM.render(
+//   <Game />,
+//   document.getElementById('root')
+// )
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  
+    <Game />
+  
+);
