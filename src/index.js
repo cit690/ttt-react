@@ -24,16 +24,15 @@ const Square = (props) => {
  
 
 const Board = () => {
-  const initialSquares = [
-    null, null, null,
-    null, null, null,
-    null, null, null,
-  ]
-
+  const initialSquares = Array(9).fill(null)
   const [squares, setSquares] = useState(initialSquares)
+  const [xIsNext, setXIsNext] = useState(true)
 
   const handleClickEvent = (i) => {
-    alert(`square ${i} clicked`)
+    const newSquares = [...squares]
+    newSquares[i] = xIsNext ? 'X' : 'O'
+    setSquares(newSquares)
+    setXIsNext(!xIsNext)
   }
 
   const renderSquare = (i) => {
