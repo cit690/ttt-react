@@ -33,6 +33,12 @@ font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   background-color: #222;
 }
 
+.status {
+  text-align: center;
+  margin: 20px;
+  font-size: 30px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

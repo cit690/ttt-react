@@ -30,6 +30,9 @@ const Board = () => {
 
   const handleClickEvent = (i) => {
     const newSquares = [...squares]
+
+    const winnerDeclared = Boolean(calculateWinner(newSquares))
+
     newSquares[i] = xIsNext ? 'X' : 'O'
     setSquares(newSquares)
     setXIsNext(!xIsNext)
@@ -43,13 +46,14 @@ const Board = () => {
     /> 
     );
   }
+
+  const winner = calculateWinner(squares)
+  const status = winner ?
+    `Winner: ${winner}`:
+    `Next player: ${xIsNext ? 'X' : 'O'}`
   
-  return ( <div style={{
-    backgroundColor: 'skyblue',
-    margin: 10,
-    padding: 20,
-  }}>
-    Board
+  return ( <div>
+    <div className='status'>{status}</div>
     <div className='board-row'>
       {renderSquare(0)}
       {renderSquare(1)}
@@ -74,7 +78,7 @@ const Board = () => {
 
 const Game = () => {
   return ( <div className='game' >
-    Game
+    Tic-Tac-Toe
   <Board />
   </div> );
 }
@@ -92,3 +96,20 @@ root.render(
     <Game />
   
 );
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2], [3, 4, 5], [6,7,8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4,6]
+  ]
+
+  for (let line of lines) {
+    const [a, b, c] = line
+
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
+      return squares[a]
+    }
+  }
+  return null
+}
